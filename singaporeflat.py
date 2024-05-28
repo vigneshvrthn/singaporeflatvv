@@ -47,7 +47,7 @@ if select_fun=="Price Prediction":
         st.markdown("<h5><span style='color:blue'>ENTER THE SELLING MONTH</span><h5>", unsafe_allow_html=True)
         selling_month=st.number_input("",value=1,min_value=1,max_value=12)
         st.markdown("<h5><span style='color:blue'>ENTER THE LEASE COMMENCE DATE</span><h5>", unsafe_allow_html=True)
-        lease_commence_date=st.number_input("",min_value=1973,max_value=2021,placeholder="yyyy")        
+        lease_commence_date=st.number_input("",min_value=1973,max_value=2021)        
         
         
     
