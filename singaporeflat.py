@@ -10,12 +10,11 @@ from io import BytesIO
 
 
 
-
-
-
-
 #reading the csv file
-df = pd.read_csv(r"E:\project\flat price\finalfalt2.csv")
+url = "https://raw.githubusercontent.com/vigneshvrthn/singaporeflatvv/main/finalfalt2.csv"
+
+# Load the CSV file into a DataFrame
+df = pd.read_csv(url)
 #streamling app pagelayout and background and title
 st.set_page_config(layout="wide")
 st.title("FLAT RESALE VALUE")
