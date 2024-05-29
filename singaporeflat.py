@@ -9,7 +9,7 @@ import zipfile
 from io import BytesIO
 
 def modle_data():
-    with open(r"","rb") as file:
+    with open("https://github.com/vigneshvrthn/singaporeflatvv/blob/main/resalevv","rb") as file:
         model=pickle.load(file)
         return model
 def predict(model):
@@ -89,17 +89,6 @@ if select_fun=="Price Prediction":
     # by using the threshhold create the dict for the input data to save and impute the data for suitabe format
     
     if but: 
-        df2=df[['floor_area_sqm', 'lease_commence_date', 'town_code', 'flat_type_code',
-       'flat_model_code', 'storey_range_code', 'Selling_Year', 'resale_price']]
-        from sklearn.model_selection import train_test_split
-        x=df2.loc[ : ,df2.columns[:-1]]
-        y=df2.loc[ : ,df2.columns[-1]]
-        x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.25,random_state=333)
-        from sklearn.ensemble import RandomForestRegressor
-        model=RandomForestRegressor(n_estimators=242,max_depth=25,max_features="sqrt")
-        model.fit(x_train,y_train)
-        model.score(x_test,y_test)
-          
         a={"floor_area_sqm":[],"lease_commence_date":[],"town_code":[],"flat_type_code":[],
            "flat_model_code":[],"storey_range_code":[],"Selling_Year":[]}
         a["floor_area_sqm"].append(floor_area_sqm)
@@ -114,7 +103,7 @@ if select_fun=="Price Prediction":
         floor=df[df.storey_range==floor]["storey_range_code"].iloc[0]
         a["storey_range_code"].append(floor)
         a=pd.DataFrame(a)      #dict to dataframe 
-        PRE=model.predict(a.loc[: ,list(a.columns)[:]])       #calling the function to predict
+        PRE=predict(modle_data())         #calling the function to predict
         st.markdown("")
         st.markdown("")
         st.markdown("")
