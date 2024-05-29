@@ -8,11 +8,23 @@ import requests
 import zipfile
 from io import BytesIO
 
-def modle_data():
-    url="https://github.com/vigneshvrthn/singaporeflatvv/blob/main/resalevv"
+import requests
+import pickle
+
+def load_model_from_url(url):
     response = requests.get(url)
-    model = pickle.loads(response.content)
-    return model
+    if response.status_code == 200:
+        try:
+            model = pickle.loads(response.content)
+            return model
+        except pickle.UnpicklingError as e:
+            raise Exception(f"Error unpickling the data: {e}")
+    else:
+        raise Exception(f"Failed to fetch file from URL. Status code: {response.status_code}")
+
+# Example usage:
+url = "https://raw.githubusercontent.com/vigneshvrthn/singaporeflatvv/main/resalevv"
+model = load_model_from_url(url)
 def predict(model):
     pred_value = model.predict(a.loc[: ,list(a.columns)[:]])
     return pred_value
@@ -104,7 +116,7 @@ if select_fun=="Price Prediction":
         floor=df[df.storey_range==floor]["storey_range_code"].iloc[0]
         a["storey_range_code"].append(floor)
         a=pd.DataFrame(a)      #dict to dataframe 
-        PRE=predict(modle_data())         #calling the function to predict
+        PRE=predict(model)         #calling the function to predict
         st.markdown("")
         st.markdown("")
         st.markdown("")
