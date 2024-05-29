@@ -8,7 +8,13 @@ import requests
 import zipfile
 from io import BytesIO
 
-
+def modle_data():
+    with open(r"","rb") as file:
+        model=pickle.load(file)
+        return model
+def predict(model):
+    pred_value = model.predict(a.loc[: ,list(a.columns)[:]])
+    return pred_value
 
 #reading the csv file
 url = "https://raw.githubusercontent.com/vigneshvrthn/singaporeflatvv/main/finalfalt2.csv"
