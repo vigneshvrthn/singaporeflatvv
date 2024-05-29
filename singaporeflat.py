@@ -9,9 +9,10 @@ import zipfile
 from io import BytesIO
 
 def modle_data():
-    with open("https://github.com/vigneshvrthn/singaporeflatvv/blob/main/resalevv","rb") as file:
-        model=pickle.load(file)
-        return model
+    url="https://github.com/vigneshvrthn/singaporeflatvv/blob/main/resalevv"
+    response = requests.get(url)
+    model = pickle.loads(response.content)
+    return model
 def predict(model):
     pred_value = model.predict(a.loc[: ,list(a.columns)[:]])
     return pred_value
