@@ -5,12 +5,9 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import pickle
 import requests
-import zipfile
-from io import BytesIO
 
-import requests
-import pickle
 
+#creating the function for calling the csv file and the model
 def load_model_from_url(url):
     response = requests.get(url)
     if response.status_code == 200:
@@ -22,18 +19,21 @@ def load_model_from_url(url):
     else:
         raise Exception(f"Failed to fetch file from URL. Status code: {response.status_code}")
 
-# Example usage:
-url = "https://raw.githubusercontent.com/vigneshvrthn/singaporeflatvv/main/resalevv"
-model = load_model_from_url(url)
 def predict(model):
     pred_value = model.predict(a.loc[: ,list(a.columns)[:]])
     return pred_value
 
+
+
 #reading the csv file
 url = "https://raw.githubusercontent.com/vigneshvrthn/singaporeflatvv/main/finalfalt2.csv"
 
+
+
 # Load the CSV file into a DataFrame
 df = pd.read_csv(url)
+
+
 #streamling app pagelayout and background and title
 st.set_page_config(layout="wide")
 st.title("FLAT RESALE VALUE")
@@ -85,7 +85,7 @@ if select_fun=="Price Prediction":
         st.markdown("")
         st.markdown("")
         st.markdown("")      
-        but=st.button("Predict")
+        but=st.button("Predict")     #creating the button
 
     # First column getting the input datas
     with cols[4]:
@@ -101,7 +101,7 @@ if select_fun=="Price Prediction":
 
     # by using the threshhold create the dict for the input data to save and impute the data for suitabe format
     
-    if but: 
+    if but: # by cliking the button to collect the input data and append in it dict
         a={"floor_area_sqm":[],"lease_commence_date":[],"town_code":[],"flat_type_code":[],
            "flat_model_code":[],"storey_range_code":[],"Selling_Year":[]}
         a["floor_area_sqm"].append(floor_area_sqm)
@@ -116,6 +116,8 @@ if select_fun=="Price Prediction":
         floor=df[df.storey_range==floor]["storey_range_code"].iloc[0]
         a["storey_range_code"].append(floor)
         a=pd.DataFrame(a)      #dict to dataframe 
+        url = "https://raw.githubusercontent.com/vigneshvrthn/singaporeflatvv/main/resalevv"
+        model = load_model_from_url(url)
         PRE=predict(model)         #calling the function to predict
         st.markdown("")
         st.markdown("")
