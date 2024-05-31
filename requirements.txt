@@ -5,3 +5,4 @@ streamlit-option-menu==0.3.2
 scikit-learn==1.2.0
 altair==4.2.2
 requests
+xgboost==1.5.0
