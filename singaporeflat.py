@@ -116,7 +116,7 @@ if select_fun=="Price Prediction":
         floor=df[df.storey_range==floor]["storey_range_code"].iloc[0]
         a["storey_range_code"].append(floor)
         a=pd.DataFrame(a)      #dict to dataframe 
-        url = "https://raw.githubusercontent.com/vigneshvrthn/singaporeflatvv/main/resalevv"
+        url = "https://raw.githubusercontent.com/vigneshvrthn/singaporeflatvv/main/resaleX"
         model = load_model_from_url(url)
         PRE=predict(model)         #calling the function to predict
         st.markdown("")
