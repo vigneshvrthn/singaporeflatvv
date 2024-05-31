@@ -138,3 +138,7 @@ if select_fun=="Price Prediction":
         </span>
     </h5>
 """, unsafe_allow_html=True)
+if select_fun=="Contact":
+        st.subheader("NAME : VIGNESH")
+        st.subheader("EMAIL: vigneshvrthn@gmail.com")
+        st.subheader("CONTACT : +919360776848")
